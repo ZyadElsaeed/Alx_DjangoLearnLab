@@ -5,3 +5,9 @@ class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
     class Meta(UserCreationForm.Meta):
         fields = UserCreationForm.Meta.fields + ('email',)
+
+from .models import Comment
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content']
