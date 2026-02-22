@@ -1,14 +1,13 @@
-# Social Media API
-Built with Django REST Framework.
+# Social Media API - Production Ready
+Final capstone project for ALX Back-End Web Development.
 
-## Deployment Instructions
-1. Set DEBUG=False in settings.py.
-2. Run 'pip install -r requirements.txt'.
-3. Use 'python manage.py collectstatic' for static files.
-4. Deployed using Gunicorn as the WSGI server.
+## Deployment Details
+- **Database**: PostgreSQL (configured via dj-database-url)
+- **WSGI Server**: Gunicorn
+- **Static Files**: Served via WhiteNoise
+- **Security**: DEBUG set to False, Security headers enabled
 
-## Endpoints
-- /api/accounts/register/
-- /api/accounts/login/
-- /api/posts/
-- /api/notifications/
+## Setup
+1. Run `pip install -r requirements.txt`
+2. Run `python manage.py collectstatic`
+3. Set up environment variables for DATABASE_URL and SECRET_KEY.

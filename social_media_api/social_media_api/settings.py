@@ -140,3 +140,19 @@ X_FRAME_OPTIONS = 'DENY'
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_SSL_REDIRECT = False # اجعلها True لو عندك شهادة SSL فعالة
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+import dj_database_url
+
+# Database configuration for production
+DATABASES = {
+    'default': dj_database_url.config(
+        default='sqlite:///db.sqlite3',
+        conn_max_age=600,
+        ssl_require=False
+    )
+}
+
+# Static files configuration (WhiteNoise)
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
