@@ -5,10 +5,8 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from .serializers import UserSerializer
 from django.contrib.auth import get_user_model
 
-User = get_user_model()
-
 class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
+    queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
 
 class LoginView(ObtainAuthToken):
