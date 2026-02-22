@@ -1,12 +1,13 @@
-from rest_framework import generics, status
+from rest_framework import generics, status, permissions
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.decorators import api_view, permission_classes
 from .serializers import UserSerializer
-from django.contrib.auth import get_user_model
+from .models import CustomUser
 
 class RegisterView(generics.CreateAPIView):
-    queryset = get_user_model().objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
 class LoginView(ObtainAuthToken):
@@ -16,18 +17,6 @@ class LoginView(ObtainAuthToken):
         user = serializer.validated_data['user']
         token, created = Token.objects.get_or_create(user=user)
         return Response({'token': token.key})
-
-from rest_framework import permissions
-
-class UserListView(generics.GenericAPIView):
-    queryset = CustomUser.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def post(self, request, user_id):
-        user_to_follow = CustomUser.objects.get(id=user_id)
-        request.user.following.add(user_to_follow)
-        return Response({"message": f"Following {user_to_follow.username}"}, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 @permission_classes([permissions.IsAuthenticated])
