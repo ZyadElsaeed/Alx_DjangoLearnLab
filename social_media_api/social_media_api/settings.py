@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'accounts',
     'posts',
     'notifications',
+    'notifications',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
