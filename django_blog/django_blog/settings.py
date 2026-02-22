@@ -26,7 +26,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'django_blog.urls'
 TEMPLATES = [{'BACKEND': 'django.template.backends.django.DjangoTemplates','DIRS': [],'APP_DIRS': True,'OPTIONS': {'context_processors': ['django.template.context_processors.debug','django.template.context_processors.request','django.contrib.auth.context_processors.auth','django.contrib.messages.context_processors.messages',],},},]
 WSGI_APPLICATION = 'django_blog.wsgi.application'
-DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3','NAME': BASE_DIR / 'db.sqlite3',}}
 AUTH_PASSWORD_VALIDATORS = []
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
@@ -37,3 +36,15 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = 'login'
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'django_blog_db',
+        'USER': 'db_user',
+        'PASSWORD': 'db_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
